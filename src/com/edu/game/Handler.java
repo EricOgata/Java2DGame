@@ -1,0 +1,46 @@
+package com.edu.game;
+
+import java.awt.Graphics;
+import java.util.LinkedList;
+
+import com.edu.gameObjects.GameObject;
+import com.edu.gameObjects.ID;
+
+
+public class Handler {
+	
+	public LinkedList<GameObject> object = new LinkedList<GameObject>();
+	
+	public void tick(){
+		for(int i = 0; i < object.size(); i++){
+			GameObject tempObject = object.get(i);
+			
+			tempObject.tick();
+		}
+	}
+	
+	public void render(Graphics g){
+		for(int i = 0; i < object.size(); i++){
+			GameObject tempObject = object.get(i);
+			
+			tempObject.render(g);
+		}
+	}
+	
+	public void removeAll(ID id){
+		for(int i = object.size() - 1; i > 0; i--){
+			if(object.get(i).getId() == id){
+				object.remove(i);
+			}
+		}
+	}
+	
+	public void addObject(GameObject object){
+		this.object.add(object);
+	}
+	
+	public void removeObject(GameObject object){
+		this.object.remove(object);
+	}
+
+}
